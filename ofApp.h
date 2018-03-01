@@ -30,6 +30,6 @@ class ofApp : public ofBaseApp{
 	vector<geneNube> geneNubes;
 
 	bool sumarNube = true;
-	int cantidadSemillas = 2;
+	int cantidadSemillas = 3;
 
 };

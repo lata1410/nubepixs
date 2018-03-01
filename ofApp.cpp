@@ -5,6 +5,8 @@ void ofApp::setup(){
 
 	ofSetBackgroundAuto(false);
 	ofSetRectMode(OF_RECTMODE_CENTER);
+	
+	RUI_SETUP();
 }
 
 //--------------------------------------------------------------
@@ -14,22 +16,57 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
-	ofBackground(154, 215, 221);
-	ofDrawBitmapString( ofToString( ofGetFrameRate() ), 250, 20 );
+	//ofBackground(154, 215, 221);
+	ofBackground(0, 0, 221);
+	//ofBackground(0,0,0);
+	for(int i = 0; i < ofGetHeight(); i+=5){
+		for(int z = 0; z < ofGetWidth(); z+=4){
+			ofSetRectMode(OF_RECTMODE_CORNER);
+			ofSetColor(160, 72, 0);
+			ofDrawRectangle(z, i + ofRandom(-3 , 3), 5, 5);
+		}
+	}
+	ofSetRectMode(OF_RECTMODE_CENTER);
+
 	if(nubes.size() > 1){
-		ofDrawBitmapString( ofToString( geneNubes.size() ), 450, 20 );
+		ofDrawBitmapString( ofToString( nubes[0].tracker.getCentroid2D() ), 450, 20 );
 
 	}
-
-	for(int i = 0; i < nubes.size(); i++){
-		ofFill();
-		nubes[i].draw();
+	if(nubes.size() <= cantidadSemillas){
+		for(int i = 0; i < nubes.size(); i++){
+			ofFill();
+			nubes[i].draw();
+		}
 	}
+
 	for(int i = 0; i < geneNubes.size(); i++){
 		ofFill();
+		if(geneNubes[i].der == true && geneNubes[i].x < -150){
+			geneNubes.erase(geneNubes.begin() + i);
+			geneNube nuevaNube;
+			geneNubes.push_back(nuevaNube);
+			int randomSema = int(ofRandom(nubes.size()-1));
+			int comienzo[2];
+			comienzo[0] = -150;
+			comienzo[1] = ofGetWidth() + 150;
+			geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(5,12), nubes[randomSema].pts, nubes[randomSema].centroid);
+			geneNubes[geneNubes.size() - 1].animar();
+		}
+		if(geneNubes[i].der == false && geneNubes[i].x > ofGetWidth() + 150){
+			geneNubes.erase(geneNubes.begin() + i);
+			geneNube nuevaNube;
+			geneNubes.push_back(nuevaNube);
+			int randomSema = int(ofRandom(nubes.size()-1));
+			int comienzo[2];
+			comienzo[0] = -150;
+			comienzo[1] = ofGetWidth() + 150;
+			geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(5,12), nubes[randomSema].pts, nubes[randomSema].centroid);
+			geneNubes[geneNubes.size() - 1].animar();
+		}
 		geneNubes[i].draw();
+		
 	}
-	
+
 }
 
 //--------------------------------------------------------------
@@ -56,11 +93,17 @@ void ofApp::keyReleased(int key){
 		}
 	} else if (nubes.size() >= cantidadSemillas){
 		if (key == 's'){
-			geneNube nuevaNube;
-			geneNubes.push_back(nuevaNube);
-			int randomSema = int(ofRandom(nubes.size()-1));
-			geneNubes[geneNubes.size() - 1].setup(-100, ofRandom(ofGetHeight()), ofRandom(1, 2), nubes[randomSema].ptsQueda);
-			geneNubes[geneNubes.size() - 1].animar();
+			for(int i = 0; i < 12; i++){
+				geneNube nuevaNube;
+				geneNubes.push_back(nuevaNube);
+				int randomSema = int(ofRandom(nubes.size()-1));
+				int comienzo[2];
+				comienzo[0] = -150;
+				comienzo[1] = ofGetWidth() + 150;
+				geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(5,12), nubes[randomSema].pts, nubes[randomSema].centroid);
+				geneNubes[geneNubes.size() - 1].animar();
+			}
+		
 		}
 	}
 }

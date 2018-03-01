@@ -15,7 +15,7 @@
 class geneNube {
 public:
 	
-		void setup(float _x, float _y, float _sumador, vector<ofPoint> _pts);
+		void setup(float _x, float _y, float _sumador, vector<ofPoint> _pts, ofVec3f _centroid);
 		void draw();
 		void trazar();
 		void cerrarTrazo();
@@ -24,15 +24,15 @@ public:
 		ofPath nube;
 		ofPolyline tracker;
 		vector<ofPoint> pts;
-		vector<ofPoint> ptsQueda;
+		vector<ofPoint> distCuadra;
 		float x = 0, y = 0;
+		bool der = false;
 		float rectX, rectY;
 		float disX, disY;
 		float xQueda, yQueda;
-		float sumador = 0.5;
+		float sumador;
 		bool cerro = false;
-
-
+		ofVec3f centroid;
 };
 
 #endif /* genen_hpp */

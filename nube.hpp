@@ -29,6 +29,8 @@ public:
 	float xQueda, yQueda;
 	float sumador = 0.5;
 	bool cerro = false;
+	ofVec3f centroid;
+
 };
 
 #endif /* nube_hpp */
