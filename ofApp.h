@@ -3,6 +3,8 @@
 #include "ofMain.h"
 #include "nube.hpp"
 #include "genen.hpp"
+#include "star.hpp"
+#include "ofxRemoteUIServer.h"
 
 
 
@@ -28,8 +30,12 @@ class ofApp : public ofBaseApp{
 	vector<ofPoint> pts;
 	vector<Nube> nubes;
 	vector<geneNube> geneNubes;
+	vector<Star> estrellas;
+
 
 	bool sumarNube = true;
-	int cantidadSemillas = 3;
-
+	int cantidadSemillas = 10;
+	int cantidadNubesAgregar = 10;
+	ofColor background, _colorNubes, _colorEstrellas;
+	float starwid, primerVelocidad = 5, segundaVelocidad = 16;
 };

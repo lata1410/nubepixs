@@ -21,6 +21,7 @@ void geneNube::setup(float _x, float _y, float _sumador, vector<ofPoint> _pts, o
 }
 void geneNube::draw(){
 	if (cerro == true) {
+		nube.setFillColor(colorNube);
 		nube.draw(x+=sumador, y);
 	}
 	tracker.draw();
@@ -28,8 +29,8 @@ void geneNube::draw(){
 		for(int i = 0; i < pts.size(); i++){
 			ofPushMatrix();
 			ofTranslate(x,y);
-			ofSetColor(255);
-			ofDrawRectangle(distCuadra[i].x, distCuadra[i].y, 8, 8);
+			ofSetColor(colorNube);
+			ofDrawRectangle(distCuadra[i].x, distCuadra[i].y, 6, 6);
 			ofPopMatrix();
 		}
 	}

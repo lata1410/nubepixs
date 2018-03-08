@@ -33,6 +33,7 @@ public:
 		float sumador;
 		bool cerro = false;
 		ofVec3f centroid;
+		ofColor colorNube;
 };
 
 #endif /* genen_hpp */
