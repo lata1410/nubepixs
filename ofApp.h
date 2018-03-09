@@ -34,7 +34,7 @@ class ofApp : public ofBaseApp{
 
 
 	bool sumarNube = true;
-	int cantidadSemillas = 10;
+	int cantidadSemillas = 2;
 	int cantidadNubesAgregar = 10;
 	ofColor background, _colorNubes, _colorEstrellas;
 	float starwid, primerVelocidad = 5, segundaVelocidad = 16;

@@ -2,8 +2,7 @@
 
 //--------------------------------------------------------------
 void ofApp::setup(){
-
-	ofSetBackgroundAuto(false);
+	ofSetFrameRate(120);
 	ofSetRectMode(OF_RECTMODE_CENTER);
 	
 	for(int i = 0; i < ofGetHeight(); i+=5){
@@ -42,10 +41,10 @@ void ofApp::update(){
 //--------------------------------------------------------------
 void ofApp::draw(){
 	ofBackground(background);
-	//ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, 10);
+	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, 10);
 	
 	
-	if(nubes.size() <= cantidadSemillas){
+	if(nubes.size()  <= cantidadSemillas){
 		for(int i = 0; i < nubes.size(); i++){
 			ofFill();
 			nubes[i].draw();
@@ -86,6 +85,7 @@ void ofApp::draw(){
 		}
 		geneNubes[i].colorNube = _colorNubes;
 		geneNubes[i].draw();
+		geneNubes[i].colisiona();
 	
 		
 	}

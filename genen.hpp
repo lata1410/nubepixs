@@ -17,9 +17,8 @@ public:
 	
 		void setup(float _x, float _y, float _sumador, vector<ofPoint> _pts, ofVec3f _centroid);
 		void draw();
-		void trazar();
-		void cerrarTrazo();
 		void animar();
+		void colisiona();
 		
 		ofPath nube;
 		ofPolyline tracker;

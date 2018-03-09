@@ -48,3 +48,6 @@ void geneNube::animar(){
 	nube.translate(ofPoint(-(centroid.x),-(centroid.y)));
 	cerro = true;
 }
+void geneNube::colisiona(){
+	
+}
