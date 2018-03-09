@@ -37,6 +37,6 @@ class ofApp : public ofBaseApp{
 	int cantidadSemillas = 6;
 	int cantidadNubesAgregar = 10;
 	ofColor background, _colorNubes, _colorEstrellas;
-	float starwid, primerVelocidad = 5, segundaVelocidad = 16;
+	float starwid, primerVelocidad = 2, segundaVelocidad = 6;
 	int milis;
 };

@@ -26,8 +26,8 @@ void ofApp::setup(){
 	RUI_SHARE_COLOR_PARAM(_colorNubes);
 	RUI_SHARE_COLOR_PARAM(_colorEstrellas);
 	RUI_SHARE_PARAM(starwid, 0.1, 30);
-	RUI_SHARE_PARAM(primerVelocidad, 0, 15);
-	RUI_SHARE_PARAM(segundaVelocidad, 16, 30);
+	RUI_SHARE_PARAM(primerVelocidad, 0, 100);
+	RUI_SHARE_PARAM(segundaVelocidad, 1, 100);
 
 
 
@@ -83,7 +83,7 @@ void ofApp::draw(){
 			int comienzo[2];
 			comienzo[0] = -150;
 			comienzo[1] = ofGetWidth() + 150;
-			geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(5,12), nubes[randomSema].pts, nubes[randomSema].centroid);
+			geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(primerVelocidad, segundaVelocidad), nubes[randomSema].pts, nubes[randomSema].centroid);
 			geneNubes[geneNubes.size() - 1].animar();
 		}
 		geneNubes[i].colorNube = _colorNubes;
