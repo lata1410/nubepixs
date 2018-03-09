@@ -23,9 +23,6 @@ void geneNube::draw(){
 	if (cerro == true) {
 		nube.setFillColor(colorNube);
 		nube.draw(x+=sumador, y);
-	}
-	tracker.draw();
-	if(cerro == true){
 		for(int i = 0; i < pts.size(); i++){
 			ofPushMatrix();
 			ofTranslate(x,y);
@@ -49,5 +46,8 @@ void geneNube::animar(){
 	cerro = true;
 }
 void geneNube::colisiona(){
+	if( (der == true && x < -150)  || (der == false && x > ofGetWidth() + 150)){
+		muerte = true;
+	}
 	
 }

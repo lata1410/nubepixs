@@ -18,5 +18,5 @@ void Star::setup(float _x, float _y, float _wid, float _hei){
 void Star::draw(){
 	ofSetRectMode(OF_RECTMODE_CORNER);
 	ofSetColor(colorEstrellas);
-	ofDrawRectangle(x, y + ofRandom(-3 , 3), wid, hei);
+	ofDrawRectangle(x + ofRandom(-0.5 , 0.5), y + ofRandom(-0.5 , 0.5), wid, hei);
 }

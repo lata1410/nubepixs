@@ -4,13 +4,18 @@
 void ofApp::setup(){
 	ofSetFrameRate(120);
 	ofSetRectMode(OF_RECTMODE_CENTER);
-	
-	for(int i = 0; i < ofGetHeight(); i+=5){
-		for(int z = 0; z < ofGetWidth(); z+=4){
-			Star nuevaEstrella;
-			nuevaEstrella.setup(z, i, 1, 1);
-			estrellas.push_back(nuevaEstrella);
-		}
+	//Estrellaz matriz
+//	for(int i = 0; i < ofGetHeight(); i+=5){
+//		for(int z = 0; z < ofGetWidth(); z+=4){
+//			Star nuevaEstrella;
+//			nuevaEstrella.setup(z, i, 1, 1);
+//			estrellas.push_back(nuevaEstrella);
+//		}
+//	}
+	for(int i = 0; i < 400; i++){
+		Star nuevaEstrella;
+		nuevaEstrella.setup(ofRandom(ofGetWidth()), ofRandom(ofGetHeight()), 8, 8);
+		estrellas.push_back(nuevaEstrella);
 	}
 	
 	RUI_SETUP();
@@ -40,8 +45,11 @@ void ofApp::update(){
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+	milis = ofGetElapsedTimeMillis();
 	ofBackground(background);
 	ofDrawBitmapString(ofToString(ofGetFrameRate()), 10, 10);
+	ofDrawBitmapString(ofToString(milis), 250, 10);
+
 	
 	
 	if(nubes.size()  <= cantidadSemillas){
@@ -50,29 +58,24 @@ void ofApp::draw(){
 			nubes[i].draw();
 		}
 	}
+	
+	
+	int ran = ofRandom(estrellas.size() - 1);
+	estrellas[ran].x = ofRandom(ofGetWidth());
+	estrellas[ran].y = ofRandom(ofGetHeight());
 	for (int i = 0; i<estrellas.size(); i++) {
 		estrellas[i].colorEstrellas = _colorEstrellas;
 		estrellas[i].wid = starwid;
 		estrellas[i].hei = starwid;
 		estrellas[i].draw();
 	}
+	
 	ofSetRectMode(OF_RECTMODE_CENTER);
-
 	for(int i = 0; i < geneNubes.size(); i++){
-		
 		ofFill();
-		if(geneNubes[i].der == true && geneNubes[i].x < -150){
-			geneNubes.erase(geneNubes.begin() + i);
-			geneNube nuevaNube;
-			geneNubes.push_back(nuevaNube);
-			int randomSema = int(ofRandom(nubes.size()-1));
-			int comienzo[2];
-			comienzo[0] = -150;
-			comienzo[1] = ofGetWidth() + 150;
-			geneNubes[geneNubes.size() - 1].setup(comienzo[int(ofRandom(2))], ofRandom(ofGetHeight()), ofRandom(5,12), nubes[randomSema].pts, nubes[randomSema].centroid);
-			geneNubes[geneNubes.size() - 1].animar();
-		}
-		if(geneNubes[i].der == false && geneNubes[i].x > ofGetWidth() + 150){
+		
+		//Genera nueva Nube
+		if (geneNubes[i].muerte == true){
 			geneNubes.erase(geneNubes.begin() + i);
 			geneNube nuevaNube;
 			geneNubes.push_back(nuevaNube);
@@ -86,10 +89,8 @@ void ofApp::draw(){
 		geneNubes[i].colorNube = _colorNubes;
 		geneNubes[i].draw();
 		geneNubes[i].colisiona();
-	
-		
-	}
 
+	}
 }
 
 //--------------------------------------------------------------
